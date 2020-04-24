@@ -3,7 +3,8 @@ import {axiosWithAuth} from '../utils/axioswithAuth';
 
 const JokePage = () => {
   const [jokeList, setJokeList] = useState([]);
-
+  const checkToken = localStorage.getItem('token');
+  console.log(checkToken);
 
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const JokePage = () => {
     <div className='jokestuff'>
       
       <div className="jokelist">
-      {jokeList.length ? (
+      {checkToken ? (
         jokeList.map(joke =>
           <>
           <div className="jokecard">
