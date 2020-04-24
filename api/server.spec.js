@@ -24,7 +24,7 @@ describe("server", function () {
             });
     });
 
-    describe("POST/", function () { 
+    describe("POST/auth", function () { 
         
         beforeEach(async () => {
             await db("users").truncate();
@@ -63,46 +63,43 @@ describe("server", function () {
                     });
                 });
 
-                it("Login endpoint returns a token", async function () {
-                    await request(server)
-                    .post("/api/auth/register")
-                    .send({username:"nacho",password:"cheese"})
-                    await request(server)
-                    .post("/api/auth/login")
-                    .send({username:"nacho",password:"cheese"})
-                    .then(res => {
-                        console.log(res.body)
-                    expect(res.body.token).toBeTruthy();
-                        });
-                    });
+            it("Login endpoint returns a token", async function () {
+            await request(server)
+            .post("/api/auth/register")
+            .send({username:"nacho",password:"cheese"})
+            await request(server)
+            .post("/api/auth/login")
+            .send({username:"nacho",password:"cheese"})
+            .then(res => {
+                console.log(res.body)
+            expect(res.body.token).toBeTruthy();
+                });
+            });
 
-        //     it("should return the object with an ID", function () {
-        //         return request(server)
-        //         .post("/cheese")
-        //         .send({type:"nacho"})
-        //         .then(res => {
-        //             console.log(res.body)
-        //         expect(res.body.cheese).toMatchObject({ id: 1, type: 'nacho' });
-        //             });
-        //         });
+            
 
-        //         it('should add the cheese to the DB', async function () {
-        //             const cheeseName = 'nacho'
-        //             const existing = await db('cheese').where({type: cheeseName})
-        //             expect(existing).toHaveLength(0);
-        //            await request(server)
-        //             .post("/cheese")
-        //             .send({type:cheeseName})
-        //             .then(res => {
-        //             expect(res.body.message).toBe("Cheese added successfully");
-                     
-        //             });
-        //             const inserted = await db("cheese"); //.where({ name: hobbitName });
-        //             expect(inserted).toHaveLength(1);
-                    
-        //             });
+                
+
+      });
+
+      describe("GET/jokes", function () { 
+        
+        it("should return 200 OK", function () {
+          return request(server)
+          .get("/")
+          .then(res => {
+              console.log(res.body)
+          expect(res.status).toBe(200);
+              });
+          });
   
-
+          it("should return api:up", function () {
+              return request(server)
+              .get("/")
+              .then(res => {
+              expect(res.body).toMatchObject({ api: 'up' });
+                  });
+              });
       });
 
  });
