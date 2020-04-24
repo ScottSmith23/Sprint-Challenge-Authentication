@@ -19,7 +19,7 @@ router.post("/register", (req, res) => {
 
 Users.add(hashPass(creds))
   .then(saved => {
-      res.status(201).json(saved)
+      res.status(201).json({message:'Successfully Registered!'})
   })
   .catch(err => res.send(err));
 });
