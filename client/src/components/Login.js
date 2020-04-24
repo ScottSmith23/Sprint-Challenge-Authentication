@@ -26,7 +26,7 @@ const Login = (props) => {
       .then(res => {
         console.log(res.data.token);
         localStorage.setItem('token', JSON.stringify(res.data.token));
-        props.history.push('/users');
+        props.history.push('/jokes');
       })
       .catch(err => console.log(err));
   };

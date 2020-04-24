@@ -28,7 +28,8 @@ const JokePage = () => {
     <div className='jokestuff'>
       
       <div className="jokelist">
-      {checkToken ? (
+          
+      {checkToken ? (    
         jokeList.map(joke =>
           <>
           <div className="jokecard">
