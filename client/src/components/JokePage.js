@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {axiosWithAuth} from '../utils/axioswithAuth';
 
-const JokePage = () => {
+const JokePage = (props) => {
   const [jokeList, setJokeList] = useState([]);
   const checkToken = localStorage.getItem('token');
   console.log(checkToken);
@@ -22,13 +22,19 @@ const JokePage = () => {
 
 }
 
+const logOut = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    props.history.push('/jokes');
+  };
+
   return (
     <>
     <h1>Joke list</h1>
     <div className='jokestuff'>
       
       <div className="jokelist">
-          
+       {checkToken ? (<button onClick={logOut}>Log Out</button>): (<span></span>)}   
       {checkToken ? (    
         jokeList.map(joke =>
           <>
